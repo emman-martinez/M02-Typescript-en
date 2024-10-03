@@ -1,1 +1,3 @@
-console.log("analytics.js");
+(() => {
+  console.log("analytics.js");
+})();
