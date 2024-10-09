@@ -2,7 +2,7 @@
   class Departament {
     // private id: string;
     // public name: string;
-    private employees: string[] = [];
+    protected employees: string[] = [];
 
     constructor(
       private readonly id: string,
@@ -37,11 +37,22 @@
       super(id, "IT");
     }
 
+    addEmployee(employee: string): void {
+      if (employee === "Jesus") {
+        return;
+      }
+      this.employees.push(employee);
+    }
+
     addReport(text: string) {
       this.reports.push(text);
     }
 
     getReports() {
+      console.log(this.reports);
+    }
+
+    printReports() {
       console.log(this.reports);
     }
   }
@@ -58,6 +69,10 @@
 
   const accounting = new AccountingDepartament("d2", []);
   accounting.addReport("Something went wrong...");
+  accounting.addEmployee("Jesus");
+  accounting.addEmployee("Emmanuel");
+  accounting.printReports();
+  accounting.printEmployeeInformation();
   accounting.getReports();
 
   //   const accountingCopy = { name: "DUMMY", describe: accounting.describe };
