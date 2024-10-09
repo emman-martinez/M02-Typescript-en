@@ -2,12 +2,11 @@
   class Departament {
     // private id: string;
     // public name: string;
-    // private employees: string[] = [];
+    private employees: string[] = [];
 
     constructor(
-      private id: string,
-      public name: string,
-      private employees: string[] = []
+      private readonly id: string,
+      public name: string // private employees: string[] = []
     ) {
       // this.name = name;
     }
@@ -26,14 +25,40 @@
     }
   }
 
-  const accounting = new Departament("d1", "Accounting");
+  class ITDepartament extends Departament {
+    constructor(id: string, public admins: string[]) {
+      super(id, "IT");
+      this.admins = admins;
+    }
+  }
+
+  class AccountingDepartament extends Departament {
+    constructor(id: string, private reports: string[]) {
+      super(id, "IT");
+    }
+
+    addReport(text: string) {
+      this.reports.push(text);
+    }
+
+    getReports() {
+      console.log(this.reports);
+    }
+  }
+
+  const it = new ITDepartament("d1", ["Jesus"]);
   // console.log(accounting);
-  accounting.addEmployee("Emmanuel");
-  accounting.addEmployee("Jesús");
+  it.addEmployee("Emmanuel");
+  it.addEmployee("Jesús");
   // accounting.employees[2] = "Anna";
-  accounting.describe();
+  it.describe();
   // accounting.name = "NEW NAME";
-  accounting.printEmployeeInformation();
+  it.printEmployeeInformation();
+  console.log(it);
+
+  const accounting = new AccountingDepartament("d2", []);
+  accounting.addReport("Something went wrong...");
+  accounting.getReports();
 
   //   const accountingCopy = { name: "DUMMY", describe: accounting.describe };
   //   accountingCopy.describe();
