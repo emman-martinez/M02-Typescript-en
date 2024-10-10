@@ -1,7 +1,9 @@
 (() => {
-  interface Greatable {
+  interface Named {
     readonly name: string;
-    // age: number;
+  }
+
+  interface Greatable extends Named {
     greet(phrase: string): void;
   }
 
