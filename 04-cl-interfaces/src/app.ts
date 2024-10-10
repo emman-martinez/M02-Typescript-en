@@ -1,6 +1,6 @@
 (() => {
   interface Greatable {
-    name: string;
+    readonly name: string;
     // age: number;
     greet(phrase: string): void;
   }
