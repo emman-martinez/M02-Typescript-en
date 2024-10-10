@@ -1,17 +1,22 @@
-interface Person {
-  name: string;
-  age: number;
-  greet(phrase: string): void;
-}
+(() => {
+  interface Greatable {
+    name: string;
+    // age: number;
+    greet(phrase: string): void;
+  }
 
-let user1: Person;
+  class Person implements Greatable {
+    constructor(public name: string, public age: number) {}
 
-user1 = {
-  name: "Emmanuel",
-  age: 30,
-  greet(phrase: string) {
-    console.log(phrase + " " + this.name);
-  },
-};
+    greet(phrase: string) {
+      console.log(phrase + " " + this.name);
+    }
+  }
 
-user1.greet("Hi there - I am");
+  let user1: Greatable;
+
+  user1 = new Person("Emmanuel", 30);
+
+  user1.greet("Hi there - I am");
+  console.log(user1);
+})();
